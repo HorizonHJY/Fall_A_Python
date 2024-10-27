@@ -8,12 +8,23 @@ products = {
 max_ratio = float('-inf')
 max_ratio_key = None
 
-# 遍历字典，找到最大ratio对应的键
-for key, value in products.items():
-    print(key,value)
-    if value['ratio'] > max_ratio:
-        max_ratio = value['ratio']
-        max_ratio_key = key
+vw_order_list = []
+len_num = 0
 
-# 输出最大ratio对应的键
-print(max_ratio_key)
+while len_num < len(products):
+    max_ratio = 0
+    max_ratio_key = None
+    for key, value in products.items():
+        print(key, value)
+        # 检查 key 是否已在 vw_order_list 中
+        if key in vw_order_list:
+            continue
+        elif value['ratio'] > max_ratio:
+            max_ratio = value['ratio']
+            max_ratio_key = key
+    # 在找到的最大 ratio 对应的键不为空的情况下，将其添加到列表
+    # if max_ratio_key:
+    vw_order_list.append(max_ratio_key)
+    len_num += 1
+
+print(vw_order_list)
